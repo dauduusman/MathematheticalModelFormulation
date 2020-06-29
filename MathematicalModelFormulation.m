@@ -2,9 +2,9 @@
 % 
 % Trailing zeros are added to some digits.
 % 
-% A nonfeasible scenerio is always designated a value of Nan.
+% A nonfeasible scenerio is always designated a value of NaN.
 %
-% In the variables below where thre is more than a row, each row represents
+% In the variables below where there is more than a row, each row represents
 % a source from the first to the last respectively as stated in the 
 % research. Each column represents TP1, TP2, TP3, TP4 and TP5 respectively.
 
