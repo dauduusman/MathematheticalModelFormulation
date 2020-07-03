@@ -2,15 +2,15 @@
 % 
 % Trailing zeros are added to some digits.
 % 
-% A nonfeasible scenerio is always designated a value of NaN.
+% A nonfeasible or nonapplicable scenerio is always designated a value of
+% NaN.
 %
 % In the variables below where there is more than a row, each row represents
 % a source from the first to the last respectively as stated in the 
 % research. Each column represents TP1, TP2, TP3, TP4 and TP5 respectively.
 
 
-% The variable TripDuration below stores all the trip durations excluding 
-% Ijede.
+% The variable TripDuration below stores all the trip durations
 
 TripDuration = [ ...
     103 132 140 145 165; ...
@@ -24,16 +24,10 @@ TripDuration = [ ...
     127 142 155 160 180; ...
     119 134 145 150 170; ...
     125 139 150 155 175; ...
+    186 201 180 185 205; ...
     096 111 120 125 145];
 
-% The trip duration from Ijede is stored in the variable TripDurationIjede
-% below.
-
-TripDurationIjede = [186 201 180 185 205];
-
 % The variable CyclingDistance below stores all the cycling distances
-% excluding Ijede.
-
 CyclingDistance = [ ...
     04.7 01.0 00.0 00.0 00.0; ...
     09.0 08.7 00.0 00.0 00.0; ...
@@ -46,15 +40,10 @@ CyclingDistance = [ ...
     08.7 06.2 00.0 00.0 00.0; ...
     07.3 04.8 00.0 00.0 00.0; ...
     08.1 05.6 00.0 00.0 00.0; ...
+    18.5 16.0 00.0 00.0 00.0; ...
     03.5 01.0 00.0 00.0 00.0];
 
-% The cycling distance from Ijede is stored in the variable 
-% CyclingDistanceIjede below.
-
-CyclingDistanceIjede =[18.5 16.0 00.0 00.0 00.0];
-
 % The variable TripCost below stores all the trip costs per person
-% excluding Ijede.
 
 TripCost = [ ...
     250 250 350 420 570; ...
@@ -68,22 +57,12 @@ TripCost = [ ...
     250 250 350 420 570; ...
     250 250 400 470 620; ...
     250 250 400 470 620; ...
+    250 250 500 570 720; ...
     250 250 250 320 470];
 
-% The trip costs per person from Ijede is stored in the variable
-% TripCostIjede below.
-
-TripCostIjede = [250 250 500 570 720];
-
 % The variable NoOfCommuters below stores the numbers of commuters
-% excluding Ijede.
 
-NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 33];
-
-% Number of commuters from Ijede is stored in the variable 
-% NoOfCommutersIjede below.
-
-NoOfCommutersIjede = 1;
+NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
 
 % The maximum trip duration constraint is set below as 160. 
 
@@ -93,9 +72,19 @@ MaxTripDuration = 160;
 
 MaxCyclingDistance = 6;
 
+% The trip duration from Ijede is being excluded from the variable
+% TripDuration which holds the values of all trip durations. This will
+% exclude the trip duration from Ijede from being checked for the trip
+% duration constraint.
+
+TripDurationIjede = TripDuration(12,:);
+
+TripDuration(12,:) = NaN(1,5);
+
 % Trip duration feasibility is being checked below and the result being 
 % stored in the variable TripDurationFeasibility having same dimension as 
-% TripDuration. A feasible scenerio will have a value of 1.
+% TripDuration. A feasible scenerio will have a value of 1. Trip durations
+% from Ijede are are already excluded.
 
 [A,B] = size(TripDuration);
 
@@ -108,6 +97,15 @@ for m=1:A
         end
     end
 end
+
+% The cycling distances from Ijede is being excluded from the variable
+% CyclingDistance which holds the values of all cycling distances. This 
+% will exclude the cycling distances from Ijede from being checked for the
+% cycling distance constraint.
+
+CyclingDistanceIjede = CyclingDistance(12,:);
+
+CyclingDistance(12,:) = NaN(1,5);
 
 % Cycling distance feasibility is being checked below and the result being 
 % stored in the variable TripDurationFeasibility having same dimension as 
@@ -141,6 +139,11 @@ FeasibleTripPatternsCosts = Overallfeasibility .* TripCost;
 % each source is stored in the variable OptimizedTripsCostsPerPerson.
 
 OptimizedTripsCostsPerPerson = min(FeasibleTripPatternsCosts,[],2);
+
+% Adding the amount of the trip pattern (trip pattern 3) chosen for Ijede 
+% to OptimizedTripsCostsPerPerson
+
+OptimizedTripsCostsPerPerson(12) = TripCost(12,3);
 
 % The minimum amount of the feasible trip patterns costs for each source is
 % stored in the variable OptimizedTripsCostsPerSource.
