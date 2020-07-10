@@ -122,11 +122,6 @@ FeasibleTripPatternsCosts = Overallfeasibility .* TripCost;
 
 OptimizedTripsCostsPerPerson = min(FeasibleTripPatternsCosts,[],2);
 
-% Adding the amount of the trip pattern (trip pattern 3) chosen for Ijede 
-% to OptimizedTripsCostsPerPerson
-
-OptimizedTripsCostsPerPerson(12) = TripCost(12,3);
-
 % The minimum amount of the feasible trip patterns costs for each source is
 % stored in the variable OptimizedTripsCostsPerSource.
 
