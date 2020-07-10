@@ -64,22 +64,13 @@ TripCost = [ ...
 
 NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
 
-% The maximum trip duration constraint is set below as 160. 
+% The maximum trip duration constraint is set below as 150. 
 
 MaxTripDuration = 150;
 
 % The maximum cycling distance constraint is set below as 6.
 
 MaxCyclingDistance = 6;
-
-% The trip duration from Ijede is being excluded from the variable
-% TripDuration which holds the values of all trip durations. This will
-% exclude the trip duration from Ijede from being checked for the trip
-% duration constraint.
-
-TripDurationIjede = TripDuration(12,:);
-
-TripDuration(12,:) = NaN(1,5);
 
 % Trip duration feasibility is being checked below and the result being 
 % stored in the variable TripDurationFeasibility having same dimension as 
@@ -97,15 +88,6 @@ for m=1:A
         end
     end
 end
-
-% The cycling distances from Ijede is being excluded from the variable
-% CyclingDistance which holds the values of all cycling distances. This 
-% will exclude the cycling distances from Ijede from being checked for the
-% cycling distance constraint.
-
-CyclingDistanceIjede = CyclingDistance(12,:);
-
-CyclingDistance(12,:) = NaN(1,5);
 
 % Cycling distance feasibility is being checked below and the result being 
 % stored in the variable TripDurationFeasibility having same dimension as 
