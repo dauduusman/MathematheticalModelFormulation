@@ -64,9 +64,9 @@ TripCost = [ ...
 
 NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
 
-% The maximum trip duration constraint is set below as 180. 
+% The maximum trip duration constraint is set below as 150. 
 
-MaxTripDuration = 180;
+MaxTripDuration = 150;
 
 % The maximum cycling distance constraint is set below as 6.
 
