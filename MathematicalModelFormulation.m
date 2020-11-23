@@ -62,7 +62,7 @@ TripCost = [ ...
 
 % The variable NoOfCommuters below stores the numbers of commuters
 
-NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
+NoOfCommuters = [19; 7; 42; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
 
 % The maximum trip duration constraint is set below as 180. 
 
