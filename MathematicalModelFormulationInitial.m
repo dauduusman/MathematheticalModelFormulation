@@ -1,4 +1,4 @@
-% All values are stated below in digit without units.
+% All values are stated below in digits without units.
 % 
 % Trailing zeros are added to some digits.
 % 
@@ -62,7 +62,7 @@ TripCost = [ ...
 
 % The variable NoOfCommuters below stores the numbers of commuters
 
-NoOfCommuters = [19; 7; 32; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
+NoOfCommuters = [19; 7; 42; 4; 21; 10; 3; 13; 11; 3; 1; 1; 33];
 
 % The maximum trip duration constraint is set below as 150. 
 
@@ -74,8 +74,7 @@ MaxCyclingDistance = 6;
 
 % Trip duration feasibility is being checked below and the result being 
 % stored in the variable TripDurationFeasibility having same dimension as 
-% TripDuration. A feasible scenerio will have a value of 1. Trip durations
-% from Ijede are are already excluded.
+% TripDuration. A feasible scenerio will have a value of 1.
 
 [A,B] = size(TripDuration);
 
@@ -90,7 +89,7 @@ for m=1:A
 end
 
 % Cycling distance feasibility is being checked below and the result being 
-% stored in the variable TripDurationFeasibility having same dimension as 
+% stored in the variable CyclingDistanceFeasibility having same dimension as 
 % CyclingDistance. A feasible scenerio will have a value of 1.
 
 [C,D] = size(CyclingDistance);
@@ -111,9 +110,8 @@ end
 
 Overallfeasibility = TripDurationFeasibility .* CyclingDistanceFeasibility;
 
-% The cost of the feasible trip patterns is stored in the variable
-% FeasibleTripPatternsCosts. A feasible trip pattern will have a value of
-% 1.
+% The cost of the feasible trip patterns is being stored in the variable
+% FeasibleTripPatternsCosts.
 
 FeasibleTripPatternsCosts = Overallfeasibility .* TripCost;
 
